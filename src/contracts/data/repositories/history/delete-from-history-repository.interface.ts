@@ -1,5 +1,5 @@
-import { DoorEvent } from 'src/entities/dtos/door-event/door-event';
+import { DoorEventOutData } from 'src/entities/dtos/door-event/door-event-output';
 
 export interface IDeleteFromHistoryRepository {
-  deleteEvent(id: string): Promise<DoorEvent>;
+  deleteEvent(userId: string, eventId: string): Promise<DoorEventOutData>;
 }
