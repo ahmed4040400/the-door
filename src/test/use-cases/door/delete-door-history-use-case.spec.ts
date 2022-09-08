@@ -1,8 +1,8 @@
 import { IDeleteFromHistoryRepository } from '../../../contracts/data/repositories/history/delete-from-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../contracts/entities/door-history.interface';
 import { DeleteDoorHistoryUseCase } from '../../../interactors/use-cases/door/delete-door-history-use-case';
-import { DoorEventData } from '../../../test/fixtures/event-input-data-fixture';
-import { doorUserStump } from '../../../test/fixtures/user-fixture';
+import { DoorEventData } from '../../fixtures/event-input-data-fixture';
+import { doorUserStump } from '../../fixtures/user-fixture';
 
 describe('delete door history', () => {
   let useCase: DeleteDoorHistoryUseCase;
@@ -30,7 +30,6 @@ describe('delete door history', () => {
     await useCase.execute(doorUserStump.id, doorEventId);
 
     expect(mockedDeleteFromHistoryRepository.deleteEvent).toBeCalledWith(
-      doorUserStump.id,
       doorEventId,
     );
   });
