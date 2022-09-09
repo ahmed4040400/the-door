@@ -33,6 +33,13 @@ the app has 2 main actors
 
   ##### Note
 
+  this code is only for the back-end of the door, the communication part
+
+  there is gonna be 2 front-end repositories
+
+  - the door front-end (probably esp chip with sensors and actuator so handle the movements and the connection)
+  - the door owner front-end (mobile application)
+
 ## Installation
 
 ```bash
