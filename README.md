@@ -1,7 +1,3 @@
-<!-- <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p> -->
-
 ##### Note
 
 this code is only for the back-end of the door (the communication part),
@@ -38,6 +34,17 @@ the app has 2 main actors
 
   - can send action command to the door (open - close - move to certain angle)
   - set the auto close time of the door
+
+### code style
+
+the system is implemented using the **Clean Architecture**
+which makes the app components decoupled and testable and future proof
+
+### flow of control
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true" width="200" alt="Nest Logo" /></a>
+</p>
 
 ## Installation
 
