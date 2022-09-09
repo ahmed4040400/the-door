@@ -31,6 +31,8 @@ the app has 2 main actors
   - can send action command to the door (open - close - move to certain angle)
   - set the auto close time of the door
 
+  ##### Note
+
 ## Installation
 
 ```bash
