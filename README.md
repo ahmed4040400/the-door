@@ -42,6 +42,10 @@ which makes the app components decoupled and testable and future proof
 
 ### flow of control
 
+the flow of control of the system will be something like this figure
+
+note: this is not the a detailed chart but it shows the idea
+
 <p align="center">
   <img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true"  alt="flow of control" />
 </p>
