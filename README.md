@@ -43,7 +43,7 @@ which makes the app components decoupled and testable and future proof
 ### flow of control
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true" width="200" alt="Nest Logo" /></a>
+  <img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true"  alt="flow of control" />
 </p>
 
 ## Installation
