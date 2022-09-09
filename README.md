@@ -44,7 +44,7 @@ which makes the app components decoupled and testable and future proof
 
 the flow of control of the system will be something like this figure
 
-Classes marked with <I> are interfaces; Open arrowheads are using relationships. Closed arrowheads are
+Classes marked with \<I\> are interfaces; Open arrowheads are using relationships. Closed arrowheads are
 implements or inheritance relationships.
 
 note: this is not the a detailed chart but it shows the idea
