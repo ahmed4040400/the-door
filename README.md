@@ -31,14 +31,14 @@ the app has 2 main actors
   - can send action command to the door (open - close - move to certain angle)
   - set the auto close time of the door
 
-  ##### Note
+##### Note
 
-  this code is only for the back-end of the door, the communication part
+this code is only for the back-end of the door, the communication part
 
-  there is gonna be 2 front-end repositories
+there is gonna be 2 front-end repositories
 
-  - the door front-end (probably esp chip with sensors and actuator so handle the movements and the connection)
-  - the door owner front-end (mobile application)
+- the door front-end (probably esp chip with sensors and actuator so handle the movements and the connection)
+- the door owner front-end (mobile application)
 
 ## Installation
 
