@@ -47,6 +47,11 @@ the flow of control of the system will be something like this figure
 Classes marked with \<i\> are interfaces; Open arrowheads are using relationships. Closed arrowheads are
 implements or inheritance relationships.
 
+the dashed lines are defined boundaries
+note that the arrows never point outside the boundaries they always pointing inward
+
+this is a following of the dependency rule to keep the high level components decoupled from the low level components
+
 note: this is not the a detailed chart but it shows the idea
 
 <p align="center">
