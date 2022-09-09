@@ -2,6 +2,14 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p> -->
 
+##### Note
+
+this code is only for the back-end of the door (the communication part),
+there is gonna be 2 front-end repositories
+
+- the door front-end (probably esp chip with sensors and actuator to handle the movements and the connection)
+- the door owner front-end (mobile application)
+
 ## Description
 
 ### the Door
@@ -30,14 +38,6 @@ the app has 2 main actors
 
   - can send action command to the door (open - close - move to certain angle)
   - set the auto close time of the door
-
-##### Note
-
-this code is only for the back-end of the door (the communication part),
-there is gonna be 2 front-end repositories
-
-- the door front-end (probably esp chip with sensors and actuator to handle the movements and the connection)
-- the door owner front-end (mobile application)
 
 ## Installation
 
