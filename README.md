@@ -61,8 +61,8 @@ read more about <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-cl
 
 ### REST API framework
 
-the framework used for the rest api is <a href="https://nestjs.com/">**_nest.js_** </a>, this is an early decision that can be delayed if we want to
-thanks to the clean architecture
+the framework used for the rest api is <a href="https://nestjs.com/">**_nest.js_** </a>, this is an early decision that can be delayed if we want to (
+thanks to the clean architecture)
 
 ## Installation
 
