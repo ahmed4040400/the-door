@@ -2,9 +2,10 @@ import { DoorEventData } from '../../../../test/fixtures/event-input-data-fixtur
 import { doorUserStump } from '../../../../test/fixtures/user-fixture';
 import { IDoorUserDataSource } from '../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { IHistoryDataSource } from '../../../../contracts/data/data-sources/history-data-source.interface';
-import { DoorEvent } from '../../../../entities/dtos/door-event/door-event';
 import { DeleteFromHistoryRepository } from '../../../../data/repositories-imp/history/delete-from-history-repository.interface';
-import { DoorUserOutData } from 'src/entities/dtos/user/door-user/door-user-output';
+import { DoorUserOutData } from '../../../../entities/dtos/user/door-user/door-user-output';
+import { NotFoundError } from '../../../../base/errors/not-found.error';
+import { rejects } from 'assert';
 
 describe('imp of add to history repository', () => {
   let doorEventData: DoorEventData;
@@ -102,5 +103,15 @@ describe('imp of add to history repository', () => {
     const result = await repo.deleteEvent(doorUserData.id);
 
     expect(result).toEqual(eventToDelete);
+  });
+
+  it('throws an error when the event is not in the doors history', async () => {
+    mockedUserDataSource.getDoorUserById = jest.fn(() => doorUserData);
+    const expectedDeletedEvent = doorEventData.calculateDoorEventOutputData();
+
+    const shouldThrow = jest.fn(async () => {
+      await repo.deleteEvent(expectedDeletedEvent.id);
+    });
+    expect(await shouldThrow).rejects.toThrowError(NotFoundError);
   });
 });
