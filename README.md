@@ -53,7 +53,7 @@ note that the arrows never point outside the boundaries they always pointing inw
 this is a following of the dependency rule to keep the high level components decoupled from the low level components
 
 note: this is not the a detailed chart but it shows the idea
-read more about<a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">**_Clean Architecture_** </a>
+read more about <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">**_Clean Architecture_** </a>
 
 <p align="center">
   <img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true"  alt="flow of control" />
