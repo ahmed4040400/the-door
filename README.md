@@ -59,6 +59,11 @@ read more about <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-cl
   <img src="https://github.com/ahmed4040400/the-door/blob/master/flow%20of%20controle%20for%20(the-door).png?raw=true"  alt="flow of control" />
 </p>
 
+### REST API framework
+
+the framework used for the rest api is <a href="https://nestjs.com/">**_nest.js_** </a>, this is an early decision that can be delayed if we want to
+thanks to the clean architecture
+
 ## Installation
 
 ```bash
