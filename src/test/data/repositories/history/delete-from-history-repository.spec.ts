@@ -1,11 +1,10 @@
 import { DoorEventData } from '../../../../test/fixtures/event-input-data-fixture';
-import { doorUserStump } from '../../../../test/fixtures/user-fixture';
+import { doorUserStunt } from '../../../../test/fixtures/user-fixture';
 import { IDoorUserDataSource } from '../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { IHistoryDataSource } from '../../../../contracts/data/data-sources/history-data-source.interface';
 import { DeleteFromHistoryRepository } from '../../../../data/repositories-imp/history/delete-from-history-repository.interface';
 import { DoorUserOutData } from '../../../../entities/dtos/user/door-user/door-user-output';
 import { NotFoundError } from '../../../../base/errors/not-found.error';
-import { rejects } from 'assert';
 
 describe('imp of add to history repository', () => {
   let doorEventData: DoorEventData;
@@ -18,10 +17,10 @@ describe('imp of add to history repository', () => {
   let doorUserDataWithHistory: DoorUserOutData;
 
   beforeEach(() => {
-    doorUserData = structuredClone(doorUserStump);
+    doorUserData = structuredClone(doorUserStunt);
     doorEventData = new DoorEventData();
 
-    createUserStumpWithHistory();
+    createUserStuntWithHistory();
 
     mockedHistoryDataSource = {
       addEvent: null,
@@ -44,7 +43,7 @@ describe('imp of add to history repository', () => {
     );
   });
 
-  function createUserStumpWithHistory() {
+  function createUserStuntWithHistory() {
     doorUserDataWithHistory = structuredClone(doorUserData);
 
     doorUserDataWithHistory.history.push(

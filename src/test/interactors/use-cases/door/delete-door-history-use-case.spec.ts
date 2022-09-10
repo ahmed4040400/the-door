@@ -1,8 +1,8 @@
-import { IDeleteFromHistoryRepository } from '../../../contracts/data/repositories/history/delete-from-history-repository.interface';
-import { IDoorHistoryEntity } from '../../../contracts/entities/door-history.interface';
-import { DeleteDoorHistoryUseCase } from '../../../interactors/use-cases/door/delete-door-history-use-case';
-import { DoorEventData } from '../../fixtures/event-input-data-fixture';
-import { doorUserStump } from '../../fixtures/user-fixture';
+import { IDeleteFromHistoryRepository } from '../../../../contracts/data/repositories/history/delete-from-history-repository.interface';
+import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
+import { DeleteDoorHistoryUseCase } from '../../../../interactors/use-cases/door/delete-door-history-use-case';
+import { DoorEventData } from '../../../fixtures/event-input-data-fixture';
+import { doorUserStunt } from '../../../fixtures/user-fixture';
 
 describe('delete door history', () => {
   let useCase: DeleteDoorHistoryUseCase;
@@ -27,7 +27,7 @@ describe('delete door history', () => {
   it('delete the event using the repository', async () => {
     const doorEventId = doorEventData.calculateDoorEventOutputData().id;
 
-    await useCase.execute(doorUserStump.id, doorEventId);
+    await useCase.execute(doorUserStunt.id, doorEventId);
 
     expect(mockedDeleteFromHistoryRepository.deleteEvent).toBeCalledWith(
       doorEventId,
@@ -39,7 +39,7 @@ describe('delete door history', () => {
       doorEventData.calculateDoorEventOutputData();
 
     const doorEventId = expectedDeletedDoorEvent.id;
-    const result = await useCase.execute(doorUserStump.id, doorEventId);
+    const result = await useCase.execute(doorUserStunt.id, doorEventId);
 
     expect(result).toEqual(expectedDeletedDoorEvent);
   });

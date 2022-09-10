@@ -1,5 +1,5 @@
 export interface DoorUser {
-  email: string;
+  userName: string;
   password: string;
   history: string[]; // list of events id strings
 }
