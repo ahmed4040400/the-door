@@ -1,4 +1,3 @@
-import { NotAuthorizedError } from '../../../base/errors/not-authorized.error';
 import { IDeleteFromHistoryRepository } from 'src/contracts/data/repositories/history/delete-from-history-repository.interface';
 import { IDoorHistoryAuthorizer } from 'src/contracts/interactors/authorizers/door-history-authorizer.interface';
 import { IDeleteHistoryUseCase } from 'src/contracts/interactors/use-cases/door/delete-door-history-use-case.interface';
