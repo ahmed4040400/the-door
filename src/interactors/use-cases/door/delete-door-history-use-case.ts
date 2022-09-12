@@ -4,7 +4,6 @@ import { IDoorHistoryAuthorizer } from 'src/contracts/interactors/authorizers/do
 import { IDeleteHistoryUseCase } from 'src/contracts/interactors/use-cases/door/delete-door-history-use-case.interface';
 import { DoorEventOutData } from 'src/entities/dtos/door-event/door-event-output';
 
-//TODO: implement an authorizer to make sure that the event is deleted by an authorized user
 export class DeleteDoorHistoryUseCase implements IDeleteHistoryUseCase {
   constructor(
     private deleteFromHistoryRepo: IDeleteFromHistoryRepository,
@@ -14,7 +13,6 @@ export class DeleteDoorHistoryUseCase implements IDeleteHistoryUseCase {
     doorOwnerId: string,
     eventId: string,
   ): Promise<DoorEventOutData> {
-    //TODO: implement an authorizer to compare the userId to the event creator
     const authorized = await this.doorHistoryAuthorizer.authorize(
       doorOwnerId,
       eventId,
