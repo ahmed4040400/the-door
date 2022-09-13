@@ -1,3 +1,4 @@
+import { IDoorHistoryValidator } from 'src/contracts/interactors/validators/door-history-validator.interface';
 import { IAddToHistoryRepository } from '../../../../contracts/data/repositories/history/add-to-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { SaveHistoryUseCase } from '../../../../interactors/use-cases/door/save-door-history-use-case';
@@ -7,12 +8,17 @@ import { doorUserStunt } from '../../../fixtures/user-fixture';
 describe('save door history use case ', () => {
   let mockedHistoryEntity: IDoorHistoryEntity;
   let mockedAddToHistoryRepository: IAddToHistoryRepository;
+  let mockedDoorHistoryValidator: IDoorHistoryValidator;
   let useCase: SaveHistoryUseCase;
   let doorEventData: DoorEventData;
   beforeEach(async () => {
     doorEventData = new DoorEventData();
     mockedHistoryEntity = {
       getOutData: jest.fn(() => doorEventData.calculateDoorEventData()),
+    };
+
+    mockedDoorHistoryValidator = {
+      validate: jest.fn(() => Promise.resolve(true)),
     };
 
     mockedAddToHistoryRepository = {
@@ -24,7 +30,16 @@ describe('save door history use case ', () => {
     useCase = new SaveHistoryUseCase(
       mockedHistoryEntity,
       mockedAddToHistoryRepository,
+      mockedDoorHistoryValidator,
     );
+  });
+
+  it('calls the validator to validate the data before passing it to the entity', async () => {
+    const inputData = doorEventData.inputData;
+
+    await useCase.execute(doorUserStunt.id, inputData);
+
+    expect(mockedDoorHistoryValidator.validate).toBeCalledWith(inputData);
   });
 
   it('calls the entity for reformated data', async () => {
