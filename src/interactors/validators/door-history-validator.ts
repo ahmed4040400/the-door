@@ -26,11 +26,10 @@ export class DoorHistoryValidator implements IDoorHistoryValidator {
   }
 
   private async validateEvent(event): Promise<boolean> {
-    const isValidEvent = await this.isValid.isOneOf(event, [
-      Event.open,
-      Event.close,
-      Event.move,
-    ]);
+    const isValidEvent = await this.isValid.isOneOf(
+      event,
+      SPECIFIED_EVENT_ACTIONS,
+    );
     if (!isValidEvent) {
       throw new InvalidInputData(`Invalid event ${event}`);
     }
