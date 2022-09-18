@@ -2,14 +2,14 @@ import { NotAuthorizedError } from '../../../base/errors/not-authorized.error';
 import { IGetFromHistoryByEventIdRepository } from 'src/contracts/data/repositories/history/get-from-history-by-event-id-repository.interface';
 import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/doorOwner/get-door-owner-user-repository.interface';
 import { DoorOwnerUser } from 'src/entities/dtos/user/door-owner-user/door-owner-user';
-import { DoorHistoryAuthorizer } from '../../../interactors/authorizer/door-history-authorizor';
+import { DoorBelongsToOwnerAuthorizer } from '../../../interactors/authorizer/door-belongs-to-user-authorizer';
 import { DoorEventData } from '../../../test/fixtures/event-input-data-fixture';
 import { doorOwnerUserStunt } from '../../fixtures/user-fixture';
 
 describe('door history authorizer', () => {
   let mockedGetDoorOwnerUserRepository: IGetDoorOwnerUserRepository;
   let mockedGetFromHistoryByEventIdRepository: IGetFromHistoryByEventIdRepository;
-  let doorHistoryAuthorizer: DoorHistoryAuthorizer;
+  let doorHistoryAuthorizer: DoorBelongsToOwnerAuthorizer;
   let doorEventData: DoorEventData;
 
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('door history authorizer', () => {
 
     setAuthorizedDoorOwnerStunt();
 
-    doorHistoryAuthorizer = new DoorHistoryAuthorizer(
+    doorHistoryAuthorizer = new DoorBelongsToOwnerAuthorizer(
       mockedGetDoorOwnerUserRepository,
       mockedGetFromHistoryByEventIdRepository,
     );
@@ -96,7 +96,7 @@ describe('door history authorizer', () => {
   }
 
   function reInitializeAuthorizer() {
-    doorHistoryAuthorizer = new DoorHistoryAuthorizer(
+    doorHistoryAuthorizer = new DoorBelongsToOwnerAuthorizer(
       mockedGetDoorOwnerUserRepository,
       mockedGetFromHistoryByEventIdRepository,
     );

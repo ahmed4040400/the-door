@@ -1,4 +1,4 @@
-import { IDoorHistoryAuthorizer } from 'src/contracts/interactors/authorizers/door-history-authorizer.interface';
+import { IDoorBelongsToOwnerAuthorizer } from 'src/contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
 import { IDeleteFromHistoryRepository } from '../../../../contracts/data/repositories/history/delete-from-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { DeleteDoorHistoryUseCase } from '../../../../interactors/use-cases/door/delete-door-history-use-case';
@@ -12,7 +12,7 @@ describe('delete door history', () => {
   let mockedHistoryEntity: IDoorHistoryEntity;
   let mockedDeleteFromHistoryRepository: IDeleteFromHistoryRepository;
 
-  let mockedDoorHistoryAuthorizer: IDoorHistoryAuthorizer;
+  let mockedDoorHistoryAuthorizer: IDoorBelongsToOwnerAuthorizer;
   mockedHistoryEntity;
 
   beforeEach(() => {

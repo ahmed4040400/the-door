@@ -6,12 +6,12 @@ export const doorUserStunt: DoorUserOutData = {
   userName: 'ahmedTest3355',
   password: 'test32542r',
   history: [],
+  ownerIds: [],
 };
 
 export const doorOwnerUserStunt: DoorOwnerUser = {
-  id: '21',
+  id: '17',
   email: 'helloWorld@email.com',
   password: 'test32542r',
-  history: [],
   doors: [],
 };

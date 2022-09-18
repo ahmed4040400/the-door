@@ -3,5 +3,4 @@ export interface DoorOwnerUser {
   email: string;
   password: string;
   doors: string[];
-  history: string[]; // list of events id strings
 }
