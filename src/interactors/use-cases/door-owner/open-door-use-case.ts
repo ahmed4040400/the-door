@@ -16,7 +16,6 @@ export class OpenDoorUseCase implements IOpenDoor {
       const doorAction: DoorActionData = {
         doorId: doorId,
         action: Action.open,
-        angleTo: null,
       };
       return doorAction;
     }

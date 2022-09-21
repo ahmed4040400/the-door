@@ -16,7 +16,6 @@ export class CloseDoorUseCase implements ICloseDoor {
       const doorAction: DoorActionData = {
         doorId: doorId,
         action: Action.close,
-        angleTo: null,
       };
       return doorAction;
     }
