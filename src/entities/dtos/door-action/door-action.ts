@@ -2,6 +2,7 @@ export enum Action {
   open = 'open',
   close = 'close',
   move = 'move',
+  stop = 'stop',
 }
 
 export interface DoorActionData {

@@ -30,7 +30,7 @@ describe('open door use case', () => {
     );
   });
 
-  it('return a signal to open the door', async () => {
+  it('return a signal to move the door', async () => {
     const doorId = doorUserStunt.id;
     const doorOwnerId = doorOwnerUserStunt.id;
     const angleToMoveTo = 120;

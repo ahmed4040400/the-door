@@ -3,7 +3,7 @@ import {
   doorUserStunt,
 } from '../../../fixtures/user-fixture';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
-import { CloseDoorUseCase } from '../../../../interactors/use-cases/door-owner/close-door-use-case';
+import { StopMovingDoorUseCase } from '../../../../interactors/use-cases/door-owner/stop-moving-door-use-case';
 import {
   DoorActionData,
   Action,
@@ -11,33 +11,36 @@ import {
 
 describe('open door use case', () => {
   let mockedDoorBelongsToOwnerAuthorizer: IDoorBelongsToOwnerAuthorizer;
-  let closeDoorUseCase: CloseDoorUseCase;
+  let stopMovingDoorUseCase: StopMovingDoorUseCase;
   beforeEach(() => {
     mockedDoorBelongsToOwnerAuthorizer = {
       authorize: jest.fn(() => Promise.resolve(true)),
     };
-    closeDoorUseCase = new CloseDoorUseCase(mockedDoorBelongsToOwnerAuthorizer);
+    stopMovingDoorUseCase = new StopMovingDoorUseCase(
+      mockedDoorBelongsToOwnerAuthorizer,
+    );
   });
 
   it('authorize that the door is owned by the owner', async () => {
     const doorId = doorUserStunt.id;
     const doorOwnerId = doorOwnerUserStunt.id;
-    await closeDoorUseCase.execute(doorOwnerId, doorId);
+    await stopMovingDoorUseCase.execute(doorOwnerId, doorId);
     expect(mockedDoorBelongsToOwnerAuthorizer.authorize).toBeCalledWith(
       doorOwnerId,
       doorId,
     );
   });
-  it('return a signal to close the door', async () => {
+
+  it('return a signal to stop the door while moving', async () => {
     const doorId = doorUserStunt.id;
     const doorOwnerId = doorOwnerUserStunt.id;
 
     const expectedActionData: DoorActionData = {
       doorId,
-      action: Action.close,
+      action: Action.stop,
     };
 
-    const result = await closeDoorUseCase.execute(doorOwnerId, doorId);
+    const result = await stopMovingDoorUseCase.execute(doorOwnerId, doorId);
     expect(result).toEqual(expectedActionData);
   });
 });
