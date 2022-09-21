@@ -34,6 +34,7 @@ describe('open door use case', () => {
     const expectedActionData: DoorActionData = {
       doorId,
       action: Action.open,
+      angleTo: null,
     };
 
     const result = await openDoorUseCase.execute(doorOwnerId, doorId);

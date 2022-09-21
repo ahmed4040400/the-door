@@ -7,4 +7,5 @@ export enum Action {
 export interface DoorActionData {
   doorId: string;
   action: Action;
+  angleTo: number;
 }

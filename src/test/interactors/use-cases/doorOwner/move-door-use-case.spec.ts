@@ -3,7 +3,7 @@ import {
   doorUserStunt,
 } from '../../../fixtures/user-fixture';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
-import { CloseDoorUseCase } from '../../../../interactors/use-cases/door-owner/close-door-use-case';
+import { MoveDoorUseCase } from '../../../../interactors/use-cases/door-owner/move-door-use-case';
 import {
   DoorActionData,
   Action,
@@ -11,34 +11,42 @@ import {
 
 describe('open door use case', () => {
   let mockedDoorBelongsToOwnerAuthorizer: IDoorBelongsToOwnerAuthorizer;
-  let closeDoorUseCase: CloseDoorUseCase;
+  let moveDoorUseCase: MoveDoorUseCase;
   beforeEach(() => {
     mockedDoorBelongsToOwnerAuthorizer = {
       authorize: jest.fn(() => Promise.resolve(true)),
     };
-    closeDoorUseCase = new CloseDoorUseCase(mockedDoorBelongsToOwnerAuthorizer);
+    moveDoorUseCase = new MoveDoorUseCase(mockedDoorBelongsToOwnerAuthorizer);
   });
 
   it('authorize that the door is owned by the owner', async () => {
     const doorId = doorUserStunt.id;
     const doorOwnerId = doorOwnerUserStunt.id;
-    await closeDoorUseCase.execute(doorOwnerId, doorId);
+    const angleToMoveTo = 120;
+    await moveDoorUseCase.execute(doorOwnerId, doorId, angleToMoveTo);
     expect(mockedDoorBelongsToOwnerAuthorizer.authorize).toBeCalledWith(
       doorOwnerId,
       doorId,
     );
   });
+
   it('return a signal to open the door', async () => {
     const doorId = doorUserStunt.id;
     const doorOwnerId = doorOwnerUserStunt.id;
+    const angleToMoveTo = 120;
 
     const expectedActionData: DoorActionData = {
       doorId,
-      action: Action.close,
-      angleTo: null,
+      action: Action.move,
+      angleTo: angleToMoveTo,
     };
 
-    const result = await closeDoorUseCase.execute(doorOwnerId, doorId);
+    const result = await moveDoorUseCase.execute(
+      doorOwnerId,
+      doorId,
+      angleToMoveTo,
+    );
+
     expect(result).toEqual(expectedActionData);
   });
 });
