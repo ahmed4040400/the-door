@@ -1,5 +1,5 @@
 import { DoorEventData } from '../../../../test/fixtures/event-input-data-fixture';
-import { doorUserStunt } from '../../../../test/fixtures/user-fixture';
+import { doorUserOutDataStunt } from '../../../../test/fixtures/user-fixture';
 import { IDoorUserDataSource } from '../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { IHistoryDataSource } from '../../../../contracts/data/data-sources/history-data-source.interface';
 import { AddToHistoryRepository } from '../../../../data/repositories-imp/history/add-to-history-repository.interface';
@@ -14,7 +14,7 @@ describe('imp of add to history repository', () => {
   let doorUserData;
 
   beforeEach(() => {
-    doorUserData = structuredClone(doorUserStunt);
+    doorUserData = structuredClone(doorUserOutDataStunt);
     doorEventData = new DoorEventData();
     mockedHistoryDataSource = {
       addEvent: jest.fn((doorEvent: DoorEvent) => {

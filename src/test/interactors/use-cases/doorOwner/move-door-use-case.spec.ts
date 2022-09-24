@@ -1,6 +1,6 @@
 import {
-  doorOwnerUserStunt,
-  doorUserStunt,
+  doorOwnerUserOutDataStunt,
+  doorUserOutDataStunt,
 } from '../../../fixtures/user-fixture';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
 import { MoveDoorUseCase } from '../../../../interactors/use-cases/door-owner/move-door-use-case';
@@ -20,8 +20,8 @@ describe('open door use case', () => {
   });
 
   it('authorize that the door is owned by the owner', async () => {
-    const doorId = doorUserStunt.id;
-    const doorOwnerId = doorOwnerUserStunt.id;
+    const doorId = doorUserOutDataStunt.id;
+    const doorOwnerId = doorOwnerUserOutDataStunt.id;
     const angleToMoveTo = 120;
     await moveDoorUseCase.execute(doorOwnerId, doorId, angleToMoveTo);
     expect(mockedDoorBelongsToOwnerAuthorizer.authorize).toBeCalledWith(
@@ -31,8 +31,8 @@ describe('open door use case', () => {
   });
 
   it('return a signal to move the door', async () => {
-    const doorId = doorUserStunt.id;
-    const doorOwnerId = doorOwnerUserStunt.id;
+    const doorId = doorUserOutDataStunt.id;
+    const doorOwnerId = doorOwnerUserOutDataStunt.id;
     const angleToMoveTo = 120;
 
     const expectedActionData: DoorActionData = {

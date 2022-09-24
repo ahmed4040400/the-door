@@ -1,12 +1,12 @@
 import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
-import { IStopMovingDoor } from '../../../contracts/interactors/use-cases/door-owner/stop-moving-door-use-case.interface';
+import { IStopMovingDoorUseCase } from '../../../contracts/interactors/use-cases/door-owner/stop-moving-door-use-case.interface';
 
 import {
   DoorActionData,
   Action,
 } from '../../../entities/dtos/door-action/door-action';
 
-export class StopMovingDoorUseCase implements IStopMovingDoor {
+export class StopMovingDoorUseCase implements IStopMovingDoorUseCase {
   constructor(private doorBelongsToOwner: IDoorBelongsToOwnerAuthorizer) {}
   async execute(doorOwnerId: string, doorId: string): Promise<DoorActionData> {
     const isAuthorized = await this.doorBelongsToOwner.authorize(

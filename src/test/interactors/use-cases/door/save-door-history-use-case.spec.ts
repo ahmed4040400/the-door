@@ -3,7 +3,7 @@ import { IAddToHistoryRepository } from '../../../../contracts/data/repositories
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { SaveHistoryUseCase } from '../../../../interactors/use-cases/door/save-door-history-use-case';
 import { DoorEventData } from '../../../fixtures/event-input-data-fixture';
-import { doorUserStunt } from '../../../fixtures/user-fixture';
+import { doorUserOutDataStunt } from '../../../fixtures/user-fixture';
 
 describe('save door history use case ', () => {
   let mockedHistoryEntity: IDoorHistoryEntity;
@@ -37,7 +37,7 @@ describe('save door history use case ', () => {
   it('calls the validator to validate the data before passing it to the entity', async () => {
     const inputData = doorEventData.inputData;
 
-    await useCase.execute(doorUserStunt.id, inputData);
+    await useCase.execute(doorUserOutDataStunt.id, inputData);
 
     expect(mockedDoorHistoryValidator.validate).toBeCalledWith(inputData);
   });
@@ -45,7 +45,7 @@ describe('save door history use case ', () => {
   it('calls the entity for reformated data', async () => {
     const inputData = doorEventData.inputData;
 
-    await useCase.execute(doorUserStunt.id, inputData);
+    await useCase.execute(doorUserOutDataStunt.id, inputData);
 
     expect(mockedHistoryEntity.getOutData).toBeCalledWith(inputData);
   });
@@ -54,10 +54,10 @@ describe('save door history use case ', () => {
     const inputData = doorEventData.inputData;
     const expectedDoorEventData = doorEventData.calculateDoorEventData();
 
-    await useCase.execute(doorUserStunt.id, inputData);
+    await useCase.execute(doorUserOutDataStunt.id, inputData);
 
     expect(mockedAddToHistoryRepository.addEvent).toBeCalledWith(
-      doorUserStunt.id,
+      doorUserOutDataStunt.id,
       expectedDoorEventData,
     );
   });
@@ -67,7 +67,7 @@ describe('save door history use case ', () => {
     const expectedDoorEventOutputData =
       doorEventData.calculateDoorEventOutputData();
 
-    const result = await useCase.execute(doorUserStunt.id, inputData);
+    const result = await useCase.execute(doorUserOutDataStunt.id, inputData);
     expect(result).toEqual(expectedDoorEventOutputData);
   });
 });

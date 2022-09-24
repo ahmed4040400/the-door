@@ -1,10 +1,10 @@
 import { NotAuthorizedError } from '../../../base/errors/not-authorized.error';
 import { IGetFromHistoryByEventIdRepository } from 'src/contracts/data/repositories/history/get-from-history-by-event-id-repository.interface';
-import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/doorOwner/get-door-owner-user-repository.interface';
-import { DoorOwnerUser } from 'src/entities/dtos/user/door-owner-user/door-owner-user';
+import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/door-owner/get-door-owner-user-repository.interface';
+import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
 import { DoorBelongsToOwnerAuthorizer } from '../../../interactors/authorizer/door-belongs-to-user-authorizer';
 import { DoorEventData } from '../../../test/fixtures/event-input-data-fixture';
-import { doorOwnerUserStunt } from '../../fixtures/user-fixture';
+import { doorOwnerUserOutDataStunt } from '../../fixtures/user-fixture';
 
 describe('door history authorizer', () => {
   let mockedGetDoorOwnerUserRepository: IGetDoorOwnerUserRepository;
@@ -30,7 +30,7 @@ describe('door history authorizer', () => {
   });
 
   it('gets the door owner user from the door owner repository', () => {
-    const userId = doorOwnerUserStunt.id;
+    const userId = doorOwnerUserOutDataStunt.id;
     const eventId = doorEventData.calculateDoorEventOutputData().id;
     doorHistoryAuthorizer.authorize(userId, eventId);
 
@@ -38,7 +38,7 @@ describe('door history authorizer', () => {
   });
 
   it('gets the event from the get event repository', async () => {
-    const userId = doorOwnerUserStunt.id;
+    const userId = doorOwnerUserOutDataStunt.id;
     const eventId = doorEventData.calculateDoorEventOutputData().id;
 
     await doorHistoryAuthorizer.authorize(userId, eventId);
@@ -50,7 +50,7 @@ describe('door history authorizer', () => {
 
   it('throws when the door owner user is not authorized', async () => {
     setNotAuthorizedDoorOwnerStunt();
-    const userId = doorOwnerUserStunt.id;
+    const userId = doorOwnerUserOutDataStunt.id;
     const eventId = doorEventData.calculateDoorEventOutputData().id;
 
     const shouldThrow = async () => {
@@ -61,7 +61,7 @@ describe('door history authorizer', () => {
   });
 
   it('returns true if the door owner own the door related to the history', async () => {
-    const userId = doorOwnerUserStunt.id;
+    const userId = doorOwnerUserOutDataStunt.id;
 
     const event = doorEventData.calculateDoorEventOutputData();
 
@@ -71,8 +71,9 @@ describe('door history authorizer', () => {
   });
 
   function setAuthorizedDoorOwnerStunt() {
-    const doorOwnerToReturn: DoorOwnerUser =
-      structuredClone(doorOwnerUserStunt);
+    const doorOwnerToReturn: DoorOwnerUserOutData = structuredClone(
+      doorOwnerUserOutDataStunt,
+    );
 
     const event = doorEventData.calculateDoorEventOutputData();
 
@@ -89,7 +90,7 @@ describe('door history authorizer', () => {
 
   function setNotAuthorizedDoorOwnerStunt() {
     mockedGetDoorOwnerUserRepository = {
-      getUser: jest.fn(() => Promise.resolve(doorOwnerUserStunt)),
+      getUser: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
     };
 
     reInitializeAuthorizer();

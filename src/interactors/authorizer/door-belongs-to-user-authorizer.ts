@@ -1,6 +1,6 @@
 import { NotAuthorizedError } from '../../base/errors/not-authorized.error';
 import { IGetFromHistoryByEventIdRepository } from 'src/contracts/data/repositories/history/get-from-history-by-event-id-repository.interface';
-import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/doorOwner/get-door-owner-user-repository.interface';
+import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/door-owner/get-door-owner-user-repository.interface';
 import { IDoorBelongsToOwnerAuthorizer } from '../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
 
 export class DoorBelongsToOwnerAuthorizer

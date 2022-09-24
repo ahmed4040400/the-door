@@ -1,11 +1,11 @@
-import { IMoveDoor } from 'src/contracts/interactors/use-cases/door-owner/move-door-use-case.interface';
+import { IMoveDoorUseCase } from 'src/contracts/interactors/use-cases/door-owner/move-door-use-case.interface';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
 import {
   DoorActionData,
   Action,
 } from '../../../entities/dtos/door-action/door-action';
 
-export class MoveDoorUseCase implements IMoveDoor {
+export class MoveDoorUseCase implements IMoveDoorUseCase {
   constructor(private doorBelongsToOwner: IDoorBelongsToOwnerAuthorizer) {}
   async execute(
     doorOwnerId: string,
