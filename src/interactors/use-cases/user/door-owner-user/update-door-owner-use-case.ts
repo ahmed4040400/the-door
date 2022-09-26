@@ -37,6 +37,5 @@ export class UpdateDoorOwnerUserUseCase implements IUpdateDoorOwnerUserUseCase {
     if (isAuthorized) {
       return this.ownerPartialValidator.validate(updateData);
     }
-    return false;
   }
 }
