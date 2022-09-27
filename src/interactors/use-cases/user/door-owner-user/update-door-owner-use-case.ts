@@ -8,7 +8,7 @@ import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/doo
 export class UpdateDoorOwnerUserUseCase implements IUpdateDoorOwnerUserUseCase {
   constructor(
     private updateOwnerRepository: IUpdateDoorOwnerUserRepository,
-    private IsDoorOwner: IIsDoorOwnerAuthorizer,
+    private isDoorOwner: IIsDoorOwnerAuthorizer,
     private ownerPartialValidator: IDoorOwnerUserPartialValidator,
   ) {}
 
@@ -32,7 +32,7 @@ export class UpdateDoorOwnerUserUseCase implements IUpdateDoorOwnerUserUseCase {
     ownerId: string,
     updateData: Partial<DoorOwnerUser>,
   ) {
-    const isAuthorized = await this.IsDoorOwner.authorize(ownerId);
+    const isAuthorized = await this.isDoorOwner.authorize(ownerId);
 
     if (isAuthorized) {
       return this.ownerPartialValidator.validate(updateData);
