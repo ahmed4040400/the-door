@@ -4,7 +4,7 @@ import { IGetDoorOwnerUserRepository } from '../../../../../contracts/data/repos
 import { IIsDoorOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/is-door-owner-authorizer.interface';
 import { GetDoorOwnerUserUseCase } from '../../../../../interactors/use-cases/user/door-owner-user/get-door-owner-use-case';
 
-describe('create a door owner user use case', () => {
+describe('get a door owner user use case', () => {
   let mockedGetDoorOwnerUserRepository: IGetDoorOwnerUserRepository;
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
   let getDoorOwnerUserUseCase: GetDoorOwnerUserUseCase;
