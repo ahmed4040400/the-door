@@ -14,7 +14,7 @@ describe('create a door user use case', () => {
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
   let mockedDoorUserValidator: IDoorUserValidator;
 
-  let createDoorOwnerUserUseCase: CreateDoorUserUseCase;
+  let createDoorUserUseCase: CreateDoorUserUseCase;
 
   beforeEach(() => {
     mockedCreateDoorUserRepository = {
@@ -28,7 +28,7 @@ describe('create a door user use case', () => {
       validate: jest.fn(() => Promise.resolve(true)),
     };
 
-    createDoorOwnerUserUseCase = new CreateDoorUserUseCase(
+    createDoorUserUseCase = new CreateDoorUserUseCase(
       mockedCreateDoorUserRepository,
       mockedIsDoorOwnerAuthorizer,
       mockedDoorUserValidator,
@@ -39,7 +39,7 @@ describe('create a door user use case', () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const userToCreate = doorUserStunt;
 
-    await createDoorOwnerUserUseCase.execute(ownerId, userToCreate);
+    await createDoorUserUseCase.execute(ownerId, userToCreate);
 
     expect(mockedDoorUserValidator.validate).toBeCalledWith(userToCreate);
   });
@@ -48,7 +48,7 @@ describe('create a door user use case', () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const userToCreate = doorUserStunt;
 
-    await createDoorOwnerUserUseCase.execute(ownerId, userToCreate);
+    await createDoorUserUseCase.execute(ownerId, userToCreate);
 
     expect(mockedIsDoorOwnerAuthorizer.authorize).toBeCalledWith(ownerId);
   });
@@ -56,7 +56,7 @@ describe('create a door user use case', () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const userToCreate = doorUserStunt;
 
-    await createDoorOwnerUserUseCase.execute(ownerId, userToCreate);
+    await createDoorUserUseCase.execute(ownerId, userToCreate);
 
     expect(mockedCreateDoorUserRepository.createUser).toBeCalledWith(
       ownerId,
@@ -73,10 +73,7 @@ describe('create a door user use case', () => {
       userToCreate,
     );
 
-    const result = await createDoorOwnerUserUseCase.execute(
-      ownerId,
-      userToCreate,
-    );
+    const result = await createDoorUserUseCase.execute(ownerId, userToCreate);
 
     expect(result).toEqual(expectedResult);
   });

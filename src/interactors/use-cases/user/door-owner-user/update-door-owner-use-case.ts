@@ -6,6 +6,7 @@ import { DoorOwnerUser } from 'src/entities/dtos/user/door-owner-user/door-owner
 import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
 
 export class UpdateDoorOwnerUserUseCase implements IUpdateDoorOwnerUserUseCase {
+  // TODO: make it update username instead of the whole user data
   constructor(
     private updateOwnerRepository: IUpdateDoorOwnerUserRepository,
     private isDoorOwner: IIsDoorOwnerAuthorizer,

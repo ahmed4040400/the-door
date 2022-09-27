@@ -1,4 +1,4 @@
 export interface DoorUser {
-  userName: string;
+  username: string;
   password: string;
 }

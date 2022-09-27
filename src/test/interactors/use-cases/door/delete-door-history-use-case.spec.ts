@@ -1,4 +1,4 @@
-import { IDoorBelongsToOwnerAuthorizer } from 'src/contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
+import { IEventBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/event-belongs-to-owner-authorizer.interface';
 import { IDeleteFromHistoryRepository } from '../../../../contracts/data/repositories/history/delete-from-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { DeleteDoorHistoryUseCase } from '../../../../interactors/use-cases/door/delete-door-history-use-case';
@@ -12,7 +12,7 @@ describe('delete door history', () => {
   let mockedHistoryEntity: IDoorHistoryEntity;
   let mockedDeleteFromHistoryRepository: IDeleteFromHistoryRepository;
 
-  let mockedDoorHistoryAuthorizer: IDoorBelongsToOwnerAuthorizer;
+  let mockedEventHistoryAuthorizer: IEventBelongsToOwnerAuthorizer;
   mockedHistoryEntity;
 
   beforeEach(() => {
@@ -24,13 +24,13 @@ describe('delete door history', () => {
       ),
     };
 
-    mockedDoorHistoryAuthorizer = {
+    mockedEventHistoryAuthorizer = {
       authorize: jest.fn(() => Promise.resolve(true)),
     };
 
     useCase = new DeleteDoorHistoryUseCase(
       mockedDeleteFromHistoryRepository,
-      mockedDoorHistoryAuthorizer,
+      mockedEventHistoryAuthorizer,
     );
   });
 
@@ -40,7 +40,7 @@ describe('delete door history', () => {
 
     await useCase.execute(doorOwner.id, doorEventId);
 
-    expect(mockedDoorHistoryAuthorizer.authorize).toBeCalledWith(
+    expect(mockedEventHistoryAuthorizer.authorize).toBeCalledWith(
       doorOwner.id,
       doorEventId,
     );

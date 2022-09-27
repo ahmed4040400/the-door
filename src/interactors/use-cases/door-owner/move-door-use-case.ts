@@ -1,5 +1,5 @@
 import { IMoveDoorUseCase } from 'src/contracts/interactors/use-cases/door-owner/move-door-use-case.interface';
-import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
+import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 import {
   DoorActionData,
   Action,
@@ -7,6 +7,7 @@ import {
 
 export class MoveDoorUseCase implements IMoveDoorUseCase {
   constructor(private doorBelongsToOwner: IDoorBelongsToOwnerAuthorizer) {}
+
   async execute(
     doorOwnerId: string,
     doorId: string,

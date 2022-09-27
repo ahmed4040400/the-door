@@ -1,5 +1,5 @@
 import { ICloseDoorUseCase } from 'src/contracts/interactors/use-cases/door-owner/close-door-use-case.interface';
-import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
+import { IDoorBelongsToOwnerAuthorizer } from '../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 import {
   DoorActionData,
   Action,

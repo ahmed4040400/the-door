@@ -2,7 +2,7 @@ import {
   doorOwnerUserOutDataStunt,
   doorUserOutDataStunt,
 } from '../../../fixtures/user-fixture';
-import { IDoorBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/door-belongs-to-user-authorizer.interface';
+import { IDoorBelongsToOwnerAuthorizer } from '../../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 import { OpenDoorUseCase } from '../../../../interactors/use-cases/door-owner/open-door-use-case';
 import {
   DoorActionData,
