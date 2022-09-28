@@ -4,7 +4,7 @@ import {
 } from '../../../../fixtures/user-fixture';
 
 import { IUpdateDoorUsernameRepository } from '../../../../../contracts/data/repositories/user/door/update-door-user-repository.interface';
-import { IDoorUsernameValidator } from '../../../../../contracts/interactors/validators/user/door/door-user-partial-validator.interface';
+import { IDoorUsernameValidator } from '../../../../../contracts/interactors/validators/user/door/door-username-validator.interface';
 import { UpdateDoorUsernameUseCase } from '../../../../../interactors/use-cases/user/door-user/update-door-username-use-case';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 

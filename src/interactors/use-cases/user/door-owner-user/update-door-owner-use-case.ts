@@ -1,42 +1,39 @@
-import { IUpdateDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-user-repository.interface';
+import { IUpdateDoorOwnerUsernameRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-user-repository.interface';
 import { IIsDoorOwnerAuthorizer } from 'src/contracts/interactors/authorizers/is-door-owner-authorizer.interface';
-import { IUpdateDoorOwnerUserUseCase } from 'src/contracts/interactors/use-cases/user/door-owner-user/update-door-owner-use-case.interface';
-import { IDoorOwnerUserPartialValidator } from 'src/contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
-import { DoorOwnerUser } from 'src/entities/dtos/user/door-owner-user/door-owner-user';
+import { IUpdateDoorOwnerUsernameUseCase } from 'src/contracts/interactors/use-cases/user/door-owner-user/update-door-owner-username-use-case.interface';
+import { IDoorOwnerUsernameValidator } from 'src/contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
 import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
 
-export class UpdateDoorOwnerUserUseCase implements IUpdateDoorOwnerUserUseCase {
-  // TODO: make it update username instead of the whole user data
+export class UpdateDoorOwnerUsernameUseCase
+  implements IUpdateDoorOwnerUsernameUseCase
+{
   constructor(
-    private updateOwnerRepository: IUpdateDoorOwnerUserRepository,
+    private updateOwnerUsernameRepository: IUpdateDoorOwnerUsernameRepository,
     private isDoorOwner: IIsDoorOwnerAuthorizer,
-    private ownerPartialValidator: IDoorOwnerUserPartialValidator,
+    private ownerUsernameValidator: IDoorOwnerUsernameValidator,
   ) {}
 
   async execute(
     ownerUserId: string,
-    doorOwnerUserUpdateData: Partial<DoorOwnerUser>,
+    newUsername: string,
   ): Promise<DoorOwnerUserOutData> {
     const isAuthorizedAndValidated = await this.authorizeAndValidate(
       ownerUserId,
-      doorOwnerUserUpdateData,
+      newUsername,
     );
 
     if (isAuthorizedAndValidated)
-      return this.updateOwnerRepository.updateUser(
+      return this.updateOwnerUsernameRepository.updateUser(
         ownerUserId,
-        doorOwnerUserUpdateData,
+        newUsername,
       );
   }
 
-  private async authorizeAndValidate(
-    ownerId: string,
-    updateData: Partial<DoorOwnerUser>,
-  ) {
+  private async authorizeAndValidate(ownerId: string, updateData: string) {
     const isAuthorized = await this.isDoorOwner.authorize(ownerId);
 
     if (isAuthorized) {
-      return this.ownerPartialValidator.validate(updateData);
+      return this.ownerUsernameValidator.validate(updateData);
     }
   }
 }
