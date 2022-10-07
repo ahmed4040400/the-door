@@ -1,4 +1,4 @@
-import { IUpdateDoorOwnerUsernameRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-user-repository.interface';
+import { IUpdateDoorOwnerUsernameRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-username-repository.interface';
 import { IIsDoorOwnerAuthorizer } from 'src/contracts/interactors/authorizers/is-door-owner-authorizer.interface';
 import { IUpdateDoorOwnerUsernameUseCase } from 'src/contracts/interactors/use-cases/user/door-owner-user/update-door-owner-username-use-case.interface';
 import { IDoorOwnerUsernameValidator } from 'src/contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
@@ -23,7 +23,7 @@ export class UpdateDoorOwnerUsernameUseCase
     );
 
     if (isAuthorizedAndValidated)
-      return this.updateOwnerUsernameRepository.updateUser(
+      return this.updateOwnerUsernameRepository.updateUsername(
         ownerUserId,
         newUsername,
       );

@@ -1,10 +1,10 @@
-import { IUpdateDoorOwnerUsernameRepository } from '../../../../../contracts/data/repositories/user/door-owner/update-door-owner-user-repository.interface';
+import { IUpdateDoorOwnerUsernameRepository } from '../../../../../contracts/data/repositories/user/door-owner/update-door-owner-username-repository.interface';
 import { IIsDoorOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/is-door-owner-authorizer.interface';
 import { IDoorOwnerUsernameValidator } from '../../../../../contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
-import { UpdateDoorOwnerUsernameUseCase } from '../../../../../interactors/use-cases/user/door-owner-user/update-door-owner-use-case';
+import { UpdateDoorOwnerUsernameUseCase } from '../../../../../interactors/use-cases/user/door-owner-user/update-door-owner-username-use-case';
 import { doorOwnerUserOutDataStunt } from '../../../../fixtures/user-fixture';
 
-describe('update a door owner user use case', () => {
+describe('update a door owner username use case', () => {
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
   let mockedDoorOwnerPartialValidator: IDoorOwnerUsernameValidator;
   let mockedUpdateDoorOwnerRepository: IUpdateDoorOwnerUsernameRepository;
@@ -18,7 +18,7 @@ describe('update a door owner user use case', () => {
       validate: jest.fn(() => Promise.resolve(true)),
     };
     mockedUpdateDoorOwnerRepository = {
-      updateUser: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
+      updateUsername: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
     };
 
     updateDoorOwnerUseCase = new UpdateDoorOwnerUsernameUseCase(
@@ -54,7 +54,7 @@ describe('update a door owner user use case', () => {
 
     await updateDoorOwnerUseCase.execute(ownerId, newUsername);
 
-    expect(mockedUpdateDoorOwnerRepository.updateUser).toBeCalledWith(
+    expect(mockedUpdateDoorOwnerRepository.updateUsername).toBeCalledWith(
       ownerId,
       newUsername,
     );
@@ -63,7 +63,7 @@ describe('update a door owner user use case', () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const newUsername = 'testusernamemadsg';
 
-    const expectedResult = await mockedUpdateDoorOwnerRepository.updateUser(
+    const expectedResult = await mockedUpdateDoorOwnerRepository.updateUsername(
       ownerId,
       newUsername,
     );
