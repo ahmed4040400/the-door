@@ -8,7 +8,7 @@ export const doorUserOutDataStunt: DoorUserOutData = {
   username: 'ahmedTest3355',
   password: 'test32542r',
   history: [],
-  ownerIds: [],
+  ownerId: '4',
 };
 
 export const doorUserStunt: DoorUser = {
