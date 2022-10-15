@@ -1,4 +1,4 @@
-import { IUpdateDoorUsernameRepository } from 'src/contracts/data/repositories/user/door/update-door-user-repository.interface';
+import { IUpdateDoorUsernameRepository } from 'src/contracts/data/repositories/user/door/update-door-user-username-repository.interface';
 import { IDoorBelongsToOwnerAuthorizer } from 'src/contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 import { IUpdateDoorUsernameUseCase } from 'src/contracts/interactors/use-cases/user/door-user/update-door-use-case.interface';
 import { IDoorUsernameValidator } from 'src/contracts/interactors/validators/user/door/door-username-validator.interface';
@@ -23,7 +23,7 @@ export class UpdateDoorUsernameUseCase implements IUpdateDoorUsernameUseCase {
     );
 
     if (isAuthorizedAndValidated) {
-      return this.updateRepo.createUser(doorId, newUsername);
+      return this.updateRepo.updateUsername(doorId, newUsername);
     }
   }
 

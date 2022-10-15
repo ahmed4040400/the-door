@@ -1,3 +1,3 @@
 export interface IDoorUsernameValidator {
-  validate(doorUserData: string): Promise<boolean>;
+  validate(username: string): Promise<boolean>;
 }

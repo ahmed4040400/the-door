@@ -3,7 +3,7 @@ import {
   doorUserOutDataStunt,
 } from '../../../../fixtures/user-fixture';
 
-import { IUpdateDoorUsernameRepository } from '../../../../../contracts/data/repositories/user/door/update-door-user-repository.interface';
+import { IUpdateDoorUsernameRepository } from '../../../../../contracts/data/repositories/user/door/update-door-user-username-repository.interface';
 import { IDoorUsernameValidator } from '../../../../../contracts/interactors/validators/user/door/door-username-validator.interface';
 import { UpdateDoorUsernameUseCase } from '../../../../../interactors/use-cases/user/door-user/update-door-username-use-case';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
@@ -17,7 +17,7 @@ describe('update a door user use case', () => {
 
   beforeEach(() => {
     mockedUpdateDoorUsernameRepository = {
-      createUser: jest.fn(() => Promise.resolve(doorUserOutDataStunt)),
+      updateUsername: jest.fn(() => Promise.resolve(doorUserOutDataStunt)),
     };
     mockedDoorBelongsToOwnerAuthorizer = {
       authorize: jest.fn(() => Promise.resolve(true)),
@@ -64,7 +64,7 @@ describe('update a door user use case', () => {
 
     await updateDoorUserUseCase.execute(ownerId, doorId, newUsername);
 
-    expect(mockedUpdateDoorUsernameRepository.createUser).toBeCalledWith(
+    expect(mockedUpdateDoorUsernameRepository.updateUsername).toBeCalledWith(
       doorId,
       newUsername,
     );
@@ -75,10 +75,11 @@ describe('update a door user use case', () => {
     const doorId = doorUserOutDataStunt.id;
     const newUsername = 'asdhgasdh';
 
-    const expectedResult = await mockedUpdateDoorUsernameRepository.createUser(
-      doorId,
-      newUsername,
-    );
+    const expectedResult =
+      await mockedUpdateDoorUsernameRepository.updateUsername(
+        doorId,
+        newUsername,
+      );
 
     const result = await updateDoorUserUseCase.execute(
       ownerId,

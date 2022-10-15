@@ -1,12 +1,12 @@
 import { IUpdateDoorOwnerUsernameRepository } from '../../../../../contracts/data/repositories/user/door-owner/update-door-owner-username-repository.interface';
 import { IIsDoorOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/is-door-owner-authorizer.interface';
-import { IDoorOwnerUsernameValidator } from '../../../../../contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
+import { IEmailValidator } from '../../../../../contracts/interactors/validators/user/email-validator.interface';
 import { UpdateDoorOwnerUsernameUseCase } from '../../../../../interactors/use-cases/user/door-owner-user/update-door-owner-username-use-case';
 import { doorOwnerUserOutDataStunt } from '../../../../fixtures/user-fixture';
 
 describe('update a door owner username use case', () => {
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
-  let mockedDoorOwnerPartialValidator: IDoorOwnerUsernameValidator;
+  let mockedDoorOwnerPartialValidator: IEmailValidator;
   let mockedUpdateDoorOwnerRepository: IUpdateDoorOwnerUsernameRepository;
   let updateDoorOwnerUseCase: UpdateDoorOwnerUsernameUseCase;
 

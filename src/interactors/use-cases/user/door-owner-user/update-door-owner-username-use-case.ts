@@ -1,7 +1,7 @@
 import { IUpdateDoorOwnerUsernameRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-username-repository.interface';
 import { IIsDoorOwnerAuthorizer } from 'src/contracts/interactors/authorizers/is-door-owner-authorizer.interface';
 import { IUpdateDoorOwnerUsernameUseCase } from 'src/contracts/interactors/use-cases/user/door-owner-user/update-door-owner-username-use-case.interface';
-import { IDoorOwnerUsernameValidator } from 'src/contracts/interactors/validators/user/door-owner/door-owner-user-partial-validator.interface';
+import { IEmailValidator } from 'src/contracts/interactors/validators/user/email-validator.interface';
 import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
 
 export class UpdateDoorOwnerUsernameUseCase
@@ -10,7 +10,7 @@ export class UpdateDoorOwnerUsernameUseCase
   constructor(
     private updateOwnerUsernameRepository: IUpdateDoorOwnerUsernameRepository,
     private isDoorOwner: IIsDoorOwnerAuthorizer,
-    private ownerUsernameValidator: IDoorOwnerUsernameValidator,
+    private ownerUsernameValidator: IEmailValidator,
   ) {}
 
   async execute(

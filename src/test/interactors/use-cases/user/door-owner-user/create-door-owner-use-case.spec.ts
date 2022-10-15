@@ -34,7 +34,7 @@ describe('create a door owner user use case', () => {
     expect(mockedDoorOwnerUserValidator.validate).toBeCalledWith(userToCreate);
   });
 
-  it('call the create repo to create a new user', async () => {
+  it('calls the create repo to create a new user', async () => {
     const userToCreate = doorOwnerUserStunt;
 
     await createDoorOwnerUserUseCase.execute(userToCreate);
@@ -44,7 +44,7 @@ describe('create a door owner user use case', () => {
     );
   });
 
-  it('return the created door owner user', async () => {
+  it('returns the created door owner user', async () => {
     const userToCreate = doorOwnerUserStunt;
     const expectedResult = await mockedCreateDoorOwnerUserRepository.createUser(
       userToCreate,

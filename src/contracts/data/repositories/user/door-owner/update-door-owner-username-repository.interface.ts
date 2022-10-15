@@ -3,6 +3,6 @@ import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/doo
 export interface IUpdateDoorOwnerUsernameRepository {
   updateUsername(
     ownerId: string,
-    updateData: string,
+    newUsername: string,
   ): Promise<DoorOwnerUserOutData>;
 }
