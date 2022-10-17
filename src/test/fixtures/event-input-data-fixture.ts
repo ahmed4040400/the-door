@@ -5,7 +5,7 @@ import {
   Event,
 } from '../../entities/dtos/door-event/door-event-input';
 
-export class DoorEventData {
+export class DoorEventDataStunt {
   inputData = {
     doorId: '1',
     event: Event.move,

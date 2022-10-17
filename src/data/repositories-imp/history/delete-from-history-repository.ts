@@ -11,6 +11,7 @@ export class DeleteFromHistoryRepository
     private historyDataSource: IHistoryDataSource,
     private doorUserDataSource: IDoorUserDataSource,
   ) {}
+
   async deleteEvent(eventId: string): Promise<DoorEventOutData> {
     const deletedEvent = await this.historyDataSource.deleteEventById(eventId);
     const doorToUpdate = await this.doorUserDataSource.getDoorUserById(
@@ -18,7 +19,10 @@ export class DeleteFromHistoryRepository
     );
 
     this.removeEventFromArray(deletedEvent.id, doorToUpdate.history);
-    await this.doorUserDataSource.updateUserById(doorToUpdate.id, doorToUpdate);
+    await this.doorUserDataSource.updateDoorUserById(
+      doorToUpdate.id,
+      doorToUpdate,
+    );
 
     return deletedEvent;
   }

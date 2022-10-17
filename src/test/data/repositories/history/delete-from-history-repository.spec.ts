@@ -1,13 +1,13 @@
-import { DoorEventData } from '../../../../test/fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../../test/fixtures/event-input-data-fixture';
 import { doorUserOutDataStunt } from '../../../../test/fixtures/user-fixture';
 import { IDoorUserDataSource } from '../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { IHistoryDataSource } from '../../../../contracts/data/data-sources/history-data-source.interface';
-import { DeleteFromHistoryRepository } from '../../../../data/repositories-imp/history/delete-from-history-repository.interface';
+import { DeleteFromHistoryRepository } from '../../../../data/repositories-imp/history/delete-from-history-repository';
 import { DoorUserOutData } from '../../../../entities/dtos/user/door-user/door-user-output';
 import { NotFoundError } from '../../../../base/errors/not-found.error';
 
 describe('imp of add to history repository', () => {
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
 
   let mockedHistoryDataSource: IHistoryDataSource;
   let mockedUserDataSource: IDoorUserDataSource;
@@ -18,7 +18,7 @@ describe('imp of add to history repository', () => {
 
   beforeEach(() => {
     doorUserData = structuredClone(doorUserOutDataStunt);
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
 
     createUserStuntWithHistory();
 
@@ -33,7 +33,7 @@ describe('imp of add to history repository', () => {
     mockedUserDataSource = {
       createDoorUser: jest.fn(() => Promise.resolve(doorUserData)),
       deleteDoorUserById: jest.fn(() => Promise.resolve(doorUserData)),
-      updateUserById: jest.fn(() => Promise.resolve(doorUserData)),
+      updateDoorUserById: jest.fn(() => Promise.resolve(doorUserData)),
       getDoorUserById: jest.fn(() => Promise.resolve(doorUserDataWithHistory)),
     };
 
@@ -84,7 +84,7 @@ describe('imp of add to history repository', () => {
 
     await repo.deleteEvent(expectedDeletedEvent.id);
 
-    expect(mockedUserDataSource.updateUserById).toBeCalledWith(
+    expect(mockedUserDataSource.updateDoorUserById).toBeCalledWith(
       doorUserDataWithHistory.id,
       expectedUserUpdateObject,
     );
@@ -104,6 +104,7 @@ describe('imp of add to history repository', () => {
     expect(result).toEqual(eventToDelete);
   });
 
+  // TODO: move this test to the data source
   it('throws an error when the event is not in the doors history', async () => {
     mockedUserDataSource.getDoorUserById = jest.fn(() => doorUserData);
     const expectedDeletedEvent = doorEventData.calculateDoorEventOutputData();

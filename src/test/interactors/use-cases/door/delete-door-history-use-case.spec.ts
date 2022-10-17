@@ -2,12 +2,12 @@ import { IEventBelongsToOwnerAuthorizer } from '../../../../contracts/interactor
 import { IDeleteFromHistoryRepository } from '../../../../contracts/data/repositories/history/delete-from-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { DeleteDoorHistoryUseCase } from '../../../../interactors/use-cases/door/delete-door-history-use-case';
-import { DoorEventData } from '../../../fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../fixtures/event-input-data-fixture';
 import { doorOwnerUserOutDataStunt } from '../../../fixtures/user-fixture';
 
 describe('delete door history', () => {
   let useCase: DeleteDoorHistoryUseCase;
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
 
   let mockedHistoryEntity: IDoorHistoryEntity;
   let mockedDeleteFromHistoryRepository: IDeleteFromHistoryRepository;
@@ -16,7 +16,7 @@ describe('delete door history', () => {
   mockedHistoryEntity;
 
   beforeEach(() => {
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
 
     mockedDeleteFromHistoryRepository = {
       deleteEvent: jest.fn(() =>

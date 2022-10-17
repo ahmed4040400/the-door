@@ -2,7 +2,7 @@ import { IDoorHistoryValidator } from 'src/contracts/interactors/validators/door
 import { IAddToHistoryRepository } from '../../../../contracts/data/repositories/history/add-to-history-repository.interface';
 import { IDoorHistoryEntity } from '../../../../contracts/entities/door-history.interface';
 import { SaveHistoryUseCase } from '../../../../interactors/use-cases/door/save-door-history-use-case';
-import { DoorEventData } from '../../../fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../fixtures/event-input-data-fixture';
 import { doorUserOutDataStunt } from '../../../fixtures/user-fixture';
 
 describe('save door history use case ', () => {
@@ -10,9 +10,9 @@ describe('save door history use case ', () => {
   let mockedAddToHistoryRepository: IAddToHistoryRepository;
   let mockedDoorHistoryValidator: IDoorHistoryValidator;
   let useCase: SaveHistoryUseCase;
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
   beforeEach(async () => {
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
     mockedHistoryEntity = {
       getOutData: jest.fn(() => doorEventData.calculateDoorEventData()),
     };

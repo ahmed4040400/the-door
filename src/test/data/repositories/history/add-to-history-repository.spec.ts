@@ -1,12 +1,12 @@
-import { DoorEventData } from '../../../../test/fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../../test/fixtures/event-input-data-fixture';
 import { doorUserOutDataStunt } from '../../../../test/fixtures/user-fixture';
 import { IDoorUserDataSource } from '../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { IHistoryDataSource } from '../../../../contracts/data/data-sources/history-data-source.interface';
-import { AddToHistoryRepository } from '../../../../data/repositories-imp/history/add-to-history-repository.interface';
+import { AddToHistoryRepository } from '../../../../data/repositories-imp/history/add-to-history-repository';
 import { DoorEvent } from 'src/entities/dtos/door-event/door-event';
 
 describe('imp of add to history repository', () => {
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
 
   let mockedHistoryDataSource: IHistoryDataSource;
   let mockedUserDataSource: IDoorUserDataSource;
@@ -15,7 +15,7 @@ describe('imp of add to history repository', () => {
 
   beforeEach(() => {
     doorUserData = structuredClone(doorUserOutDataStunt);
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
     mockedHistoryDataSource = {
       addEvent: jest.fn((doorEvent: DoorEvent) => {
         return Promise.resolve({
@@ -30,7 +30,7 @@ describe('imp of add to history repository', () => {
     mockedUserDataSource = {
       createDoorUser: jest.fn(() => Promise.resolve(doorUserData)),
       deleteDoorUserById: jest.fn(() => Promise.resolve(doorUserData)),
-      updateUserById: jest.fn(() => Promise.resolve(doorUserData)),
+      updateDoorUserById: jest.fn(() => Promise.resolve(doorUserData)),
       getDoorUserById: jest.fn(() => Promise.resolve(doorUserData)),
     };
 
@@ -72,7 +72,7 @@ describe('imp of add to history repository', () => {
       doorEventData.calculateDoorEventData(),
     );
 
-    expect(mockedUserDataSource.updateUserById).toBeCalledWith(
+    expect(mockedUserDataSource.updateDoorUserById).toBeCalledWith(
       doorUserData.id,
       expectedUserUpdateObject,
     );

@@ -5,7 +5,7 @@ export interface IDoorUserDataSource {
   createDoorUser(doorUserData: DoorUser): Promise<DoorUserOutData>;
   getDoorUserById(id: string): Promise<DoorUserOutData>;
   deleteDoorUserById(id: string): Promise<DoorUserOutData>;
-  updateUserById(
+  updateDoorUserById(
     id: string,
     doorUserObjectToUpdate: DoorUser,
   ): Promise<DoorUserOutData>;

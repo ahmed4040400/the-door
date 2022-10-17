@@ -1,13 +1,13 @@
 import { LackOfInputDataError } from '../../base/errors/input-data-missing.error';
 import { DoorHistoryEntity } from '../../entities/door-history.entity';
-import { DoorEventData } from '../fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../fixtures/event-input-data-fixture';
 
 describe('door event history entity', () => {
   let historyEntity: DoorHistoryEntity;
-  let doorEventInDataStump: DoorEventData;
+  let doorEventInDataStump: DoorEventDataStunt;
 
   beforeEach(async () => {
-    doorEventInDataStump = new DoorEventData();
+    doorEventInDataStump = new DoorEventDataStunt();
     historyEntity = new DoorHistoryEntity();
   });
 

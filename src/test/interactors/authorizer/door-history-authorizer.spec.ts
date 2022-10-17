@@ -3,17 +3,17 @@ import { IGetFromHistoryByEventIdRepository } from 'src/contracts/data/repositor
 import { IGetDoorOwnerUserRepository } from 'src/contracts/data/repositories/user/door-owner/get-door-owner-user-repository.interface';
 import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
 import { DoorBelongsToOwnerAuthorizer } from '../../../interactors/authorizer/door-belongs-to-user-authorizer';
-import { DoorEventData } from '../../../test/fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../test/fixtures/event-input-data-fixture';
 import { doorOwnerUserOutDataStunt } from '../../fixtures/user-fixture';
 
 describe('door history authorizer', () => {
   let mockedGetDoorOwnerUserRepository: IGetDoorOwnerUserRepository;
   let mockedGetFromHistoryByEventIdRepository: IGetFromHistoryByEventIdRepository;
   let doorHistoryAuthorizer: DoorBelongsToOwnerAuthorizer;
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
 
   beforeEach(() => {
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
 
     mockedGetFromHistoryByEventIdRepository = {
       getEvent: jest.fn(() =>

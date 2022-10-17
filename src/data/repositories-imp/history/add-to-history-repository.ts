@@ -14,7 +14,7 @@ export class AddToHistoryRepository implements IAddToHistoryRepository {
     const doorEvent = await this.historyDataSource.addEvent(event);
     const doorUser = await this.doorUserDataSource.getDoorUserById(userId);
     doorUser.history.push(doorEvent.id);
-    await this.doorUserDataSource.updateUserById(doorUser.id, doorUser);
+    await this.doorUserDataSource.updateDoorUserById(doorUser.id, doorUser);
     return doorEvent;
   }
 }

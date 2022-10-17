@@ -1,12 +1,12 @@
 import { Event } from '../../../entities/dtos/door-event/door-event-input';
 import { DoorHistoryValidator } from '../../../interactors/validators/door-history-validator';
-import { DoorEventData } from '../../../test/fixtures/event-input-data-fixture';
+import { DoorEventDataStunt } from '../../../test/fixtures/event-input-data-fixture';
 import { IIsValid } from '../../../contracts/interactors/validators/validate/validate.interface';
 import { InvalidInputData } from '../../../base/errors/invalid-input-data.error';
 describe('door history validator', () => {
   let mockedIsValid: IIsValid;
   let doorHistoryValidator: DoorHistoryValidator;
-  let doorEventData: DoorEventData;
+  let doorEventData: DoorEventDataStunt;
   beforeEach(() => {
     mockedIsValid = {
       isEmail: jest.fn(() => Promise.resolve(true)),
@@ -17,7 +17,7 @@ describe('door history validator', () => {
       inRange: jest.fn(() => Promise.resolve(true)),
     };
 
-    doorEventData = new DoorEventData();
+    doorEventData = new DoorEventDataStunt();
     doorHistoryValidator = new DoorHistoryValidator(mockedIsValid);
   });
 
