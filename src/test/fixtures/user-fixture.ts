@@ -6,7 +6,7 @@ import { DoorUserOutData } from '../../entities/dtos/user/door-user/door-user-ou
 export const doorUserOutDataStunt: DoorUserOutData = {
   id: '21',
   username: 'ahmedTest3355',
-  password: 'test32542r',
+  password: 'encrypted password',
   history: [],
   ownerId: '4',
 };
@@ -14,16 +14,19 @@ export const doorUserOutDataStunt: DoorUserOutData = {
 export const doorUserStunt: DoorUser = {
   username: 'ahmedTest3355',
   password: 'test32542r',
+  history: [],
+  ownerId: '4',
 };
 
 export const doorOwnerUserOutDataStunt: DoorOwnerUserOutData = {
   id: '17',
   email: 'helloWorld@email.com',
-  password: 'test32542r',
+  password: 'encrypted password',
   doors: [],
 };
 
 export const doorOwnerUserStunt: DoorOwnerUser = {
   email: 'helloWorld@email.com',
   password: 'test32542r',
+  doors: [],
 };

@@ -7,6 +7,7 @@ export interface IDoorUserDataSource {
   deleteDoorUserById(id: string): Promise<DoorUserOutData>;
   updateDoorUserById(
     id: string,
-    doorUserObjectToUpdate: DoorUser,
+    doorUserObjectToUpdate: Partial<DoorUser>,
   ): Promise<DoorUserOutData>;
 }
+// TODO:updateDoorUserById should not accept passwords in the implementation
