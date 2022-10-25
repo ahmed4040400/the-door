@@ -1,19 +1,14 @@
 import { IDoorUserDataSource } from '../../../../../contracts/data/data-sources/door-user-data-source.interface';
 import { UpdateDoorUsernameRepository } from '../../../../../data/repositories-imp/users/door/update-door-user-username-repository';
-import {
-  doorOwnerUserOutDataStunt,
-  doorUserOutDataStunt,
-} from '../../../../fixtures/user-fixture';
+import { doorUserOutDataStunt } from '../../../../fixtures/user-fixture';
 
 describe('update the door users username repository', () => {
   let mockedDoorDataSource: IDoorUserDataSource;
   let updateDoorUsernameRepo: UpdateDoorUsernameRepository;
   let doorOutData;
-  let owner;
 
   beforeEach(() => {
     doorOutData = structuredClone(doorUserOutDataStunt);
-    owner = structuredClone(doorOwnerUserOutDataStunt);
 
     mockedDoorDataSource = {
       createDoorUser: jest.fn(() => Promise.resolve(doorOutData)),
@@ -41,5 +36,24 @@ describe('update the door users username repository', () => {
       doorOutData.id,
       expectedUpdateObject,
     );
+  });
+
+  it('returns the updated door', async () => {
+    const newUsername = 'newUpdatedUserName';
+
+    const expectedUpdateObject = structuredClone(doorOutData);
+    expectedUpdateObject.username = newUsername;
+
+    const expectedResult = await mockedDoorDataSource.updateDoorUserById(
+      doorOutData.id,
+      expectedUpdateObject,
+    );
+
+    const result = await updateDoorUsernameRepo.updateUsername(
+      doorOutData.id,
+      newUsername,
+    );
+
+    expect(result).toEqual(expectedResult);
   });
 });

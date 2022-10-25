@@ -13,7 +13,6 @@ export class UpdateDoorUsernameRepository
     const door = await this.doorUserDataSource.getDoorUserById(doorId);
     door.username = newUsername;
 
-    await this.doorUserDataSource.updateDoorUserById(doorId, door);
-    return;
+    return this.doorUserDataSource.updateDoorUserById(doorId, door);
   }
 }
