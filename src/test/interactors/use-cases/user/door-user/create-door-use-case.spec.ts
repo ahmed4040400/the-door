@@ -8,12 +8,13 @@ import {
 import { CreateDoorUserUseCase } from '../../../../../interactors/use-cases/user/door-user/create-door-use-case';
 import { IDoorUserValidator } from '../../../../../contracts/interactors/validators/user/door/door-user-validator.interface';
 import { IIsDoorOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/is-door-owner-authorizer.interface';
+import { IDoorUsernameIsUniqueAuthorizer } from 'src/contracts/interactors/authorizers/door-username-is-unique-authorizer.interface';
 
 describe('create a door user use case', () => {
   let mockedCreateDoorUserRepository: ICreateDoorUserRepository;
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
   let mockedDoorUserValidator: IDoorUserValidator;
-
+  let mockedDoorUsernameIsUniqueAuthorizer: IDoorUsernameIsUniqueAuthorizer;
   let createDoorUserUseCase: CreateDoorUserUseCase;
 
   beforeEach(() => {
@@ -28,10 +29,34 @@ describe('create a door user use case', () => {
       validate: jest.fn(() => Promise.resolve(true)),
     };
 
+    mockedDoorUsernameIsUniqueAuthorizer = {
+      authorize: jest.fn(() => Promise.resolve(true)),
+    };
+
     createDoorUserUseCase = new CreateDoorUserUseCase(
       mockedCreateDoorUserRepository,
       mockedIsDoorOwnerAuthorizer,
+      mockedDoorUsernameIsUniqueAuthorizer,
       mockedDoorUserValidator,
+    );
+  });
+
+  it('calls the authorizer to authorize that the door owner is a door owner user', async () => {
+    const ownerId = doorOwnerUserOutDataStunt.id;
+    const userToCreate = doorUserStunt;
+
+    await createDoorUserUseCase.execute(ownerId, userToCreate);
+
+    expect(mockedIsDoorOwnerAuthorizer.authorize).toBeCalledWith(ownerId);
+  });
+
+  it('calls the doorUsernameIsUnique authorizer to confirm uniquity', async () => {
+    const ownerId = doorOwnerUserOutDataStunt.id;
+    const userToCreate = doorUserStunt;
+
+    await createDoorUserUseCase.execute(ownerId, userToCreate);
+    expect(mockedDoorUsernameIsUniqueAuthorizer.authorize).toBeCalledWith(
+      userToCreate.username,
     );
   });
 
@@ -44,14 +69,6 @@ describe('create a door user use case', () => {
     expect(mockedDoorUserValidator.validate).toBeCalledWith(userToCreate);
   });
 
-  it('calls the authorizer to authorize that the door owner is a door owner user', async () => {
-    const ownerId = doorOwnerUserOutDataStunt.id;
-    const userToCreate = doorUserStunt;
-
-    await createDoorUserUseCase.execute(ownerId, userToCreate);
-
-    expect(mockedIsDoorOwnerAuthorizer.authorize).toBeCalledWith(ownerId);
-  });
   it('call the create repo to create a new user', async () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const userToCreate = doorUserStunt;
