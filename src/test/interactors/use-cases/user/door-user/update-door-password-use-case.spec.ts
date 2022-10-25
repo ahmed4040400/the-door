@@ -3,7 +3,7 @@ import { UpdateDoorUserPasswordUseCase } from '../../../../../interactors/use-ca
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
 import { IIsDoorOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/is-door-owner-authorizer.interface';
 import { doorUserOutDataStunt } from '../../../../fixtures/user-fixture';
-import { IDoorPasswordConfirmationAuthorizer } from '../../../../../contracts/interactors/authorizers/password-confirmation-autorizer/door-user-password-confirmation-authorizer.interface';
+import { IDoorPasswordConfirmationAuthorizer } from '../../../../../contracts/interactors/authorizers/password-confirmation-authorizer/door-user-password-confirmation-authorizer.interface';
 import { IPasswordValidator } from '../../../../../contracts/interactors/validators/user/password-validator.interface';
 
 describe('delete a door user use case', () => {

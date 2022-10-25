@@ -12,7 +12,6 @@ describe('update a door user use case', () => {
   let mockedUpdateDoorUsernameRepository: IUpdateDoorUsernameRepository;
   let mockedDoorBelongsToOwnerAuthorizer: IDoorBelongsToOwnerAuthorizer;
   let mockedDoorUsernameValidator: IDoorUsernameValidator;
-
   let updateDoorUserUseCase: UpdateDoorUsernameUseCase;
 
   beforeEach(() => {

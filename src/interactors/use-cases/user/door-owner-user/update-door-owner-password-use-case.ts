@@ -1,6 +1,6 @@
 import { IUpdateDoorOwnerPasswordRepository } from 'src/contracts/data/repositories/user/door-owner/update-door-owner-password-repository.interface';
 import { IIsDoorOwnerAuthorizer } from 'src/contracts/interactors/authorizers/is-door-owner-authorizer.interface';
-import { IDoorOwnerPasswordConfirmationAuthorizer } from 'src/contracts/interactors/authorizers/password-confirmation-autorizer/door-owner-user-password-confirmation-authorizer.interface';
+import { IDoorOwnerPasswordConfirmationAuthorizer } from 'src/contracts/interactors/authorizers/password-confirmation-authorizer/door-owner-user-password-confirmation-authorizer.interface';
 import { IUpdateDoorOwnerPasswordUseCase } from 'src/contracts/interactors/use-cases/user/door-owner-user/update-door-owner-password-use-case.interface';
 import { IPasswordValidator } from 'src/contracts/interactors/validators/user/password-validator.interface';
 import { DoorOwnerUserOutData } from 'src/entities/dtos/user/door-owner-user/door-owner-user-output-data';
