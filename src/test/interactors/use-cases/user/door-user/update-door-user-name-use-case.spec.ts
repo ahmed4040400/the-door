@@ -7,11 +7,13 @@ import { IUpdateDoorUsernameRepository } from '../../../../../contracts/data/rep
 import { IDoorUsernameValidator } from '../../../../../contracts/interactors/validators/user/door/door-username-validator.interface';
 import { UpdateDoorUsernameUseCase } from '../../../../../interactors/use-cases/user/door-user/update-door-username-use-case';
 import { IDoorBelongsToOwnerAuthorizer } from '../../../../../contracts/interactors/authorizers/door-belongs-to-owner-authorizer.interface';
+import { IDoorUsernameIsUniqueAuthorizer } from '../../../../../contracts/interactors/authorizers/door-username-is-unique-authorizer.interface';
 
 describe('update a door user use case', () => {
   let mockedUpdateDoorUsernameRepository: IUpdateDoorUsernameRepository;
   let mockedDoorBelongsToOwnerAuthorizer: IDoorBelongsToOwnerAuthorizer;
   let mockedDoorUsernameValidator: IDoorUsernameValidator;
+  let mockedDoorUsernameIsUniqueAuthorizer: IDoorUsernameIsUniqueAuthorizer;
   let updateDoorUserUseCase: UpdateDoorUsernameUseCase;
 
   beforeEach(() => {
@@ -25,10 +27,14 @@ describe('update a door user use case', () => {
     mockedDoorUsernameValidator = {
       validate: jest.fn(() => Promise.resolve(true)),
     };
+    mockedDoorUsernameIsUniqueAuthorizer = {
+      authorize: jest.fn(() => Promise.resolve(true)),
+    };
 
     updateDoorUserUseCase = new UpdateDoorUsernameUseCase(
       mockedUpdateDoorUsernameRepository,
       mockedDoorBelongsToOwnerAuthorizer,
+      mockedDoorUsernameIsUniqueAuthorizer,
       mockedDoorUsernameValidator,
     );
   });
@@ -36,7 +42,7 @@ describe('update a door user use case', () => {
   it('calls the validator to validate the provided username before updating', async () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const doorId = doorUserOutDataStunt.id;
-    const newUsername = 'asdhgasdh';
+    const newUsername = 'newUserName';
 
     await updateDoorUserUseCase.execute(ownerId, doorId, newUsername);
 
@@ -46,7 +52,7 @@ describe('update a door user use case', () => {
   it('authorize the owner actually owns the door to update', async () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const doorId = doorUserOutDataStunt.id;
-    const newUsername = 'asdhgasdh';
+    const newUsername = 'newUserName';
 
     await updateDoorUserUseCase.execute(ownerId, doorId, newUsername);
 
@@ -56,10 +62,21 @@ describe('update a door user use case', () => {
     );
   });
 
+  it('calls the usernameIsUnique authorizer to confirm uniquity', async () => {
+    const ownerId = doorOwnerUserOutDataStunt.id;
+    const doorId = doorUserOutDataStunt.id;
+    const newUsername = 'newUserName';
+
+    await updateDoorUserUseCase.execute(ownerId, doorId, newUsername);
+    expect(mockedDoorUsernameIsUniqueAuthorizer.authorize).toBeCalledWith(
+      newUsername,
+    );
+  });
+
   it('call the update repo to update the username', async () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const doorId = doorUserOutDataStunt.id;
-    const newUsername = 'asdhgasdh';
+    const newUsername = 'newUserName';
 
     await updateDoorUserUseCase.execute(ownerId, doorId, newUsername);
 
@@ -72,7 +89,7 @@ describe('update a door user use case', () => {
   it('return the updated door user', async () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const doorId = doorUserOutDataStunt.id;
-    const newUsername = 'asdhgasdh';
+    const newUsername = 'newUserName';
 
     const expectedResult =
       await mockedUpdateDoorUsernameRepository.updateUsername(

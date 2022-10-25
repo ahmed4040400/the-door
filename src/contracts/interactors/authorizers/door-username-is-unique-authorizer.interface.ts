@@ -1,3 +1,3 @@
 export interface IDoorUsernameIsUniqueAuthorizer {
-  authorize(string: string): boolean;
+  authorize(string: string): Promise<boolean>;
 }
