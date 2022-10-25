@@ -7,9 +7,9 @@ import { doorOwnerUserOutDataStunt } from '../../../../fixtures/user-fixture';
 
 describe('update a door owner email use case', () => {
   let mockedIsDoorOwnerAuthorizer: IIsDoorOwnerAuthorizer;
+  let mockedOwnersEmailIsUnique: IOwnersEmailIsUniqueAuthorizer;
   let mockedDoorOwnerPartialValidator: IEmailValidator;
   let mockedUpdateDoorOwnerRepository: IUpdateDoorOwnerEmailRepository;
-  let mockedOwnersEmailIsUnique: IOwnersEmailIsUniqueAuthorizer;
   let updateDoorOwnerUseCase: UpdateDoorOwnerEmailUseCase;
 
   beforeEach(() => {

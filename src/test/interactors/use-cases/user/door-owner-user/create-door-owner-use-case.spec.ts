@@ -6,9 +6,11 @@ import {
 } from '../../../../fixtures/user-fixture';
 
 import { IDoorOwnerUserValidator } from '../../../../../contracts/interactors/validators/user/door-owner/door-owner-user-validator.interface';
+import { IOwnersEmailIsUniqueAuthorizer } from '../../../../../contracts/interactors/authorizers/owners-email-is-unique-authorizer.interface';
 
 describe('create a door owner user use case', () => {
   let mockedCreateDoorOwnerUserRepository: ICreateDoorOwnerUserRepository;
+  let mockedOwnersEmailIsUnique: IOwnersEmailIsUniqueAuthorizer;
   let mockedDoorOwnerUserValidator: IDoorOwnerUserValidator;
   let createDoorOwnerUserUseCase: CreateDoorOwnerUserUseCase;
 
@@ -16,13 +18,28 @@ describe('create a door owner user use case', () => {
     mockedCreateDoorOwnerUserRepository = {
       createUser: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
     };
+
+    mockedOwnersEmailIsUnique = {
+      authorize: jest.fn(() => Promise.resolve(true)),
+    };
+
     mockedDoorOwnerUserValidator = {
       validate: jest.fn(() => Promise.resolve(true)),
     };
 
     createDoorOwnerUserUseCase = new CreateDoorOwnerUserUseCase(
       mockedCreateDoorOwnerUserRepository,
+      mockedOwnersEmailIsUnique,
       mockedDoorOwnerUserValidator,
+    );
+  });
+
+  it('authorized the email is unique', async () => {
+    const userToCreate = doorOwnerUserStunt;
+
+    await createDoorOwnerUserUseCase.execute(userToCreate);
+    expect(mockedOwnersEmailIsUnique.authorize).toBeCalledWith(
+      userToCreate.email,
     );
   });
 
