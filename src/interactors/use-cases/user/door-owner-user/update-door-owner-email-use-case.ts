@@ -12,7 +12,7 @@ export class UpdateDoorOwnerEmailUseCase
     private updateOwnerUsernameRepository: IUpdateDoorOwnerEmailRepository,
     private isDoorOwner: IIsDoorOwnerAuthorizer,
     private emailIsUnique: IOwnersEmailIsUniqueAuthorizer,
-    private ownerUsernameValidator: IEmailValidator,
+    private ownerEmailValidator: IEmailValidator,
   ) {}
 
   async execute(
@@ -35,7 +35,7 @@ export class UpdateDoorOwnerEmailUseCase
     const isDoorOwner = await this.isDoorOwner.authorize(ownerId);
     const isUniqueEmail = await this.emailIsUnique.authorize(newEmail);
     if (isDoorOwner && isUniqueEmail) {
-      return this.ownerUsernameValidator.validate(newEmail);
+      return this.ownerEmailValidator.validate(newEmail);
     }
   }
 }

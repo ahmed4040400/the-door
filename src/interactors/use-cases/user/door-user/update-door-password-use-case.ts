@@ -6,8 +6,6 @@ import { IUpdateDoorUserPasswordUseCase } from 'src/contracts/interactors/use-ca
 import { IPasswordValidator } from 'src/contracts/interactors/validators/user/password-validator.interface';
 import { DoorUserOutData } from 'src/entities/dtos/user/door-user/door-user-output';
 
-// TODO: add validators to all the data taking use cases
-
 export class UpdateDoorUserPasswordUseCase
   implements IUpdateDoorUserPasswordUseCase
 {
