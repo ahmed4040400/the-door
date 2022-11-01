@@ -12,4 +12,4 @@ export interface IDoorOwnerUserDataSource {
     doorUserObjectToUpdate: Partial<DoorOwnerUser>,
   ): Promise<DoorOwnerUserOutData>;
 }
-// TODO:updateDoorOwnerUserById should not accept passwords in the implementation
+// TODO:updateDoorOwnerUserById should not accept passwords in the implementation or id
