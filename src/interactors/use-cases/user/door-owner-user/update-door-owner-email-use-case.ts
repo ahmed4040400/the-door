@@ -25,7 +25,7 @@ export class UpdateDoorOwnerEmailUseCase
     );
 
     if (isAuthorizedAndValidated)
-      return this.updateOwnerUsernameRepository.updateUsername(
+      return this.updateOwnerUsernameRepository.updateEmail(
         ownerUserId,
         newEmail,
       );

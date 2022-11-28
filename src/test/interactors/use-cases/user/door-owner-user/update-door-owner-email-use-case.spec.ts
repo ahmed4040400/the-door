@@ -26,7 +26,7 @@ describe('update a door owner email use case', () => {
     };
 
     mockedUpdateDoorOwnerRepository = {
-      updateUsername: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
+      updateEmail: jest.fn(() => Promise.resolve(doorOwnerUserOutDataStunt)),
     };
 
     updateDoorOwnerUseCase = new UpdateDoorOwnerEmailUseCase(
@@ -69,7 +69,7 @@ describe('update a door owner email use case', () => {
 
     await updateDoorOwnerUseCase.execute(ownerId, newEmail);
 
-    expect(mockedUpdateDoorOwnerRepository.updateUsername).toBeCalledWith(
+    expect(mockedUpdateDoorOwnerRepository.updateEmail).toBeCalledWith(
       ownerId,
       newEmail,
     );
@@ -79,7 +79,7 @@ describe('update a door owner email use case', () => {
     const ownerId = doorOwnerUserOutDataStunt.id;
     const newEmail = 'testNewEmail@emial.com';
 
-    const expectedResult = await mockedUpdateDoorOwnerRepository.updateUsername(
+    const expectedResult = await mockedUpdateDoorOwnerRepository.updateEmail(
       ownerId,
       newEmail,
     );
